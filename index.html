@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>こうばサポ | 工場の電気・保全・省エネを支援するフリーランスエンジニア</title>
+<meta name="description" content="滋賀県拠点、30年以上の現場経験を持つフリーランスエンジニアが、工場の電気保全・省エネ・DX・技術継承を完全中立の立場で支援します。「これなら出来る!これで十分!60点の工場保全」">
+<link rel="icon" href="assets/logo.png">
+<style>
+  :root{
+    --sage: #90ab86;
+    --sage-light: #eef2ea;
+    --sage-pale: #f6f8f4;
+    --green-dark: #2f4a34;
+    --green-deep: #1f3324;
+    --ink: #2b2e2a;
+    --ink-soft: #5c6259;
+    --line: #dfe6da;
+    --white: #ffffff;
+    --accent-red: #b5502f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,"Yu Gothic",sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* header */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 0;
+  }
+  .nav .logo img{height:34px;}
+  .nav-links{display:flex;gap:22px;align-items:center;font-size:14px;}
+  .nav-links a{text-decoration:none;color:var(--green-dark);white-space:nowrap;}
+  .nav-links a.cta{
+    background:var(--green-dark);color:#fff;padding:8px 16px;border-radius:4px;
+  }
+  .nav-toggle{display:none;}
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      background:#fff;flex-direction:column;align-items:flex-start;
+      padding:16px 24px;gap:14px;border-bottom:1px solid var(--line);
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-toggle{
+      display:block;background:none;border:none;font-size:22px;color:var(--green-dark);
+      cursor:pointer;
+    }
+  }
+
+  /* hero */
+  .hero{
+    background:linear-gradient(180deg,var(--sage-pale) 0%,var(--sage-light) 100%);
+    padding:64px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  @media (max-width:820px){.hero-inner{grid-template-columns:1fr;}}
+  .eyebrow{
+    display:inline-block;font-size:13px;letter-spacing:.08em;color:var(--green-dark);
+    background:#fff;border:1px solid var(--sage);border-radius:100px;padding:5px 14px;margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(26px,4vw,38px);line-height:1.55;color:var(--green-deep);margin-bottom:16px;
+  }
+  .hero h1 strong{
+    color:var(--green-dark);
+    background:linear-gradient(transparent 62%, #cfe0c8 62%);
+  }
+  .hero p.lead{font-size:15.5px;color:var(--ink-soft);margin-bottom:28px;max-width:46em;}
+  .btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:13px 26px;border-radius:4px;font-size:15px;text-decoration:none;
+    font-weight:600;border:1px solid transparent;transition:opacity .15s;
+  }
+  .btn:hover{opacity:.85;}
+  .btn-primary{background:var(--green-dark);color:#fff;}
+  .btn-secondary{background:#fff;color:var(--green-dark);border-color:var(--sage);}
+  .hero-art{
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px;
+  }
+  .hero-art svg{width:100%;height:auto;}
+  .hero-art .cap{
+    text-align:center;font-size:13px;color:var(--ink-soft);margin-top:10px;
+  }
+
+  /* stat bar */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr);}}
+  .stat{
+    text-align:center;padding:26px 10px;border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{font-size:26px;font-weight:700;color:var(--green-dark);}
+  .stat .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
+
+  section{padding:72px 0;}
+  section.alt{background:var(--sage-pale);}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 44px;}
+  .sec-tag{font-size:12.5px;letter-spacing:.12em;color:var(--sage);font-weight:700;text-transform:uppercase;}
+  .sec-title{font-size:26px;color:var(--green-deep);margin-top:8px;}
+  .sec-sub{font-size:14.5px;color:var(--ink-soft);margin-top:12px;}
+
+  /* features */
+  .grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  @media (max-width:900px){.grid-5{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.grid-5{grid-template-columns:1fr;}}
+  .feat{
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px 18px;
+  }
+  .feat .n{font-size:12px;color:var(--sage);font-weight:700;letter-spacing:.08em;}
+  .feat h3{font-size:16px;color:var(--green-dark);margin:8px 0 10px;}
+  .feat p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* 60 point */
+  .scheme{
+    display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;
+  }
+  @media (max-width:820px){.scheme{grid-template-columns:1fr;}}
+  .scheme-badge{
+    display:inline-block;background:var(--green-dark);color:#fff;font-weight:700;font-size:15px;
+    padding:14px 22px;border-radius:6px;margin-bottom:18px;
+  }
+  .scheme h2{font-size:24px;color:var(--green-deep);margin-bottom:14px;line-height:1.6;}
+  .scheme p{font-size:14.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .pillars{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .pillar{
+    background:#fff;border:1px solid var(--sage);color:var(--green-dark);
+    font-size:13px;padding:6px 14px;border-radius:100px;
+  }
+  .radar-wrap{background:#fff;border:1px solid var(--line);border-radius:8px;padding:24px;}
+
+  /* services */
+  .svc-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px;}
+  @media (max-width:820px){.svc-list{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.svc-list{grid-template-columns:1fr;}}
+  .svc{
+    background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;
+  }
+  .svc h3{font-size:15px;color:var(--green-dark);margin-bottom:8px;}
+  .svc p{font-size:13px;color:var(--ink-soft);}
+  .price-box{
+    background:var(--green-deep);color:#fff;border-radius:8px;padding:30px 32px;
+    display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;
+  }
+  .price-box .p-left{max-width:560px;}
+  .price-box h3{font-size:16px;margin-bottom:8px;color:#e6efe1;}
+  .price-box p{font-size:13.5px;color:#c9d8c2;}
+  .price-tag{font-size:30px;font-weight:700;white-space:nowrap;}
+  .price-tag small{font-size:13px;font-weight:400;display:block;color:#c9d8c2;}
+
+  /* profile */
+  .profile{
+    display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start;
+  }
+  @media (max-width:700px){.profile{grid-template-columns:1fr;}}
+  .avatar{
+    width:100%;aspect-ratio:1/1;border-radius:10px;background:var(--sage-light);
+    border:1px solid var(--sage);display:flex;align-items:center;justify-content:center;
+  }
+  .avatar svg{width:62%;height:62%;}
+  .profile h3{font-size:19px;color:var(--green-deep);margin-bottom:4px;}
+  .profile .role{font-size:13px;color:var(--sage);font-weight:700;margin-bottom:16px;}
+  .profile p{font-size:14px;color:var(--ink-soft);margin-bottom:14px;}
+  .qual{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .qual span{
+    font-size:12px;background:var(--sage-pale);border:1px solid var(--line);
+    padding:5px 12px;border-radius:100px;color:var(--ink-soft);
+  }
+
+  /* posts */
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  @media (max-width:820px){.posts{grid-template-columns:1fr;}}
+  .post{
+    display:block;background:#fff;border:1px solid var(--line);border-radius:8px;
+    padding:18px 20px;text-decoration:none;transition:border-color .15s;
+  }
+  .post:hover{border-color:var(--sage);}
+  .post .cat{font-size:11.5px;color:var(--sage);font-weight:700;}
+  .post h4{font-size:14.5px;color:var(--ink);margin-top:8px;line-height:1.5;}
+  .post .arrow{font-size:12px;color:var(--ink-soft);margin-top:10px;}
+
+  /* final cta */
+  .final{
+    background:linear-gradient(135deg,var(--green-dark),var(--green-deep));
+    color:#fff;text-align:center;border-radius:0;
+  }
+  .final .sec-title{color:#fff;}
+  .final .sec-sub{color:#cfe0c8;}
+  .final .btn-row{justify-content:center;margin-top:26px;}
+  .final .btn-secondary{background:transparent;color:#fff;border-color:#7fa476;}
+
+  footer{
+    background:var(--green-deep);color:#c9d8c2;padding:40px 0 28px;font-size:12.5px;
+  }
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;margin-bottom:24px;}
+  footer a{color:#e6efe1;text-decoration:none;}
+  footer .foot-links{display:flex;gap:18px;flex-wrap:wrap;}
+  footer .copyright{border-top:1px solid #3a5140;padding-top:18px;color:#8fa384;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#top"><img src="assets/logo.png" alt="こうばサポ"></a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#features">こうばサポとは</a>
+      <a href="#scheme">60点の工場保全</a>
+      <a href="#service">支援内容・料金</a>
+      <a href="#profile">プロフィール</a>
+      <a href="#posts">支援事例</a>
+      <a class="cta" href="https://koubasapo.com/contact/" target="_blank" rel="noopener">お問合せ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">滋賀県拠点 ｜ 工場の電気・保全・省エネ支援</span>
+        <h1>これなら出来る！これで十分！<br><strong>「60点の工場保全」</strong>を、<br>完全中立のフリーランスエンジニアが支援します。</h1>
+        <p class="lead">
+          電気設備・生産設備・省エネ・DX・技術継承まで、30年以上現場に携わってきたエンジニアが対応。
+          特定の製品・業者への誘導はなく、支援回数や期間の縛りもありません。
+          「100点の理想論」ではなく、現場が実際に回せる現実的な水準を、一緒に考えます。
+        </p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://koubasapo.com/contact/" target="_blank" rel="noopener">まずは相談してみる</a>
+          <a class="btn btn-secondary" href="https://koubasapo.com/" target="_blank" rel="noopener">公式サイトを見る</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="400" height="300" fill="#f6f8f4"/>
+          <rect x="40" y="150" width="320" height="110" fill="#c9dcc0"/>
+          <rect x="40" y="150" width="320" height="10" fill="#90ab86"/>
+          <rect x="70" y="90" width="46" height="70" fill="#7f9a75"/>
+          <polygon points="70,90 93,60 116,90" fill="#5f7a56"/>
+          <rect x="150" y="60" width="24" height="100" fill="#5f7a56"/>
+          <ellipse cx="162" cy="52" rx="18" ry="12" fill="#dfe9d9"/>
+          <ellipse cx="150" cy="46" rx="14" ry="10" fill="#dfe9d9"/>
+          <rect x="200" y="110" width="60" height="50" fill="#7f9a75"/>
+          <rect x="210" y="120" width="14" height="14" fill="#f6f8f4"/>
+          <rect x="232" y="120" width="14" height="14" fill="#f6f8f4"/>
+          <rect x="210" y="140" width="36" height="10" fill="#5f7a56"/>
+          <circle cx="300" cy="130" r="26" fill="none" stroke="#5f7a56" stroke-width="8"/>
+          <circle cx="300" cy="130" r="8" fill="#5f7a56"/>
+          <g stroke="#5f7a56" stroke-width="8">
+            <line x1="300" y1="94" x2="300" y2="104"/>
+            <line x1="300" y1="156" x2="300" y2="166"/>
+            <line x1="264" y1="130" x2="274" y2="130"/>
+            <line x1="326" y1="130" x2="336" y2="130"/>
+          </g>
+          <rect x="40" y="255" width="320" height="6" fill="#5f7a56"/>
+        </svg>
+        <p class="cap">技術・労務・コスト・しくみ・認識 ―― 5つの視点で現場を見る</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="num">30年以上</div><div class="lbl">工場現場での実務経験</div></div>
+    <div class="stat"><div class="num">完全中立</div><div class="lbl">製品・業者への誘導なし</div></div>
+    <div class="stat"><div class="num">全国対応</div><div class="lbl">Web・電話・LINEで柔軟に</div></div>
+    <div class="stat"><div class="num">縛りなし</div><div class="lbl">支援回数・期間フリー</div></div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">About</div>
+        <h2 class="sec-title">こうばサポが選ばれる理由</h2>
+        <p class="sec-sub">請負でも仲介でもない、現場に一番近い「相談相手」という立ち位置です。</p>
+      </div>
+      <div class="grid-5">
+        <div class="feat">
+          <div class="n">01</div>
+          <h3>現場で生きる支援</h3>
+          <p>成果物は製品でも報告書でもなく「現場が求める技術支援」。実践でき、継続できる内容を一緒に考えます。</p>
+        </div>
+        <div class="feat">
+          <div class="n">02</div>
+          <h3>完全中立</h3>
+          <p>特定製品・業者への誘導は一切なし。技術的セカンドオピニオンとしても利用いただけます。</p>
+        </div>
+        <div class="feat">
+          <div class="n">03</div>
+          <h3>リアルな現場技術</h3>
+          <p>設備設計・保全・省エネ・DX・トラブル解析・安全対策など、30年以上現在進行形で携わる技術者が対応。</p>
+        </div>
+        <div class="feat">
+          <div class="n">04</div>
+          <h3>多様な支援方法</h3>
+          <p>ヒアリングだけでなく現場調査・協働も。技術教育、勉強会、セミナーなどのご要望にも対応します。</p>
+        </div>
+        <div class="feat">
+          <div class="n">05</div>
+          <h3>場所・時間に柔軟</h3>
+          <p>全国対応可能。Webミーティング・電話に加え、突発的な相談もLINEトーク等で対応します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 60点スキーム -->
+  <section id="scheme" class="alt">
+    <div class="wrap scheme">
+      <div>
+        <span class="scheme-badge">これなら出来る！これで十分！</span>
+        <h2>「60点の工場保全」という考え方</h2>
+        <p>
+          100点満点の理想論をめざす客観的な評価には、あまり意味がありません。
+          自社のリスク許容度・人材配分・効率という観点から、現場に本当に役立つ現実解を考える ――
+          それが「60点の工場保全」です。
+        </p>
+        <p>
+          10点満点で6点のラインを「合格点」とする、現場に一番近い人の主観による「これで大丈夫」という基準。
+          目指すのは「止まらない工場」ではなく、<strong>想定外のトラブルで致命傷を受けない工場</strong>をつくることです。
+        </p>
+        <div class="pillars">
+          <span class="pillar">技術</span>
+          <span class="pillar">労務</span>
+          <span class="pillar">コスト</span>
+          <span class="pillar">しくみ</span>
+          <span class="pillar">認識</span>
+        </div>
+      </div>
+      <div class="radar-wrap">
+        <svg viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#dfe6da" fill="none">
+            <polygon points="130,30 220,90 190,190 70,190 40,90"/>
+            <polygon points="130,60 196,105 174,172 86,172 64,105"/>
+            <polygon points="130,90 172,120 158,154 102,154 88,120"/>
+          </g>
+          <polygon points="130,55 200,100 165,180 95,175 60,110" fill="#90ab86" fill-opacity="0.55" stroke="#2f4a34" stroke-width="2"/>
+          <g fill="#5c6259" font-size="12" font-family="Hiragino Kaku Gothic ProN, sans-serif">
+            <text x="130" y="20" text-anchor="middle">技術</text>
+            <text x="232" y="90" text-anchor="start">労務</text>
+            <text x="196" y="205" text-anchor="middle">コスト</text>
+            <text x="64" y="205" text-anchor="middle">しくみ</text>
+            <text x="28" y="90" text-anchor="end">認識</text>
+          </g>
+        </svg>
+        <p class="cap" style="text-align:center;color:var(--ink-soft);font-size:13px;margin-top:6px;">
+          5要素で現状を見える化するイメージ図（詳細は公式サイトで解説）
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE -->
+  <section id="service">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Service</div>
+        <h2 class="sec-title">支援内容と料金の目安</h2>
+        <p class="sec-sub">診断・提案から、教育・トラブル対応・セミナーまで柔軟に対応します。</p>
+      </div>
+      <div class="svc-list">
+        <div class="svc"><h3>診断・改善提案</h3><p>省エネ・生産性向上・保全・潜在装置リスク・安全などの診断、改善提案。まずは簡易診断からを推奨。</p></div>
+        <div class="svc"><h3>技術支援・教育</h3><p>新たな技術案件の計画や、若手技術者の育成にかかる時間・要望にフレキシブルに対応します。</p></div>
+        <div class="svc"><h3>不具合対応支援</h3><p>頻発する設備トラブル、原因不明の不具合のご相談を受付。電話等の遠隔対応も可能です。</p></div>
+        <div class="svc"><h3>オンライン相談</h3><p>電話・LINE・Zoom等でのオンライン相談。録画データの送付も可能で、遠方でも実施しやすい形式です。</p></div>
+        <div class="svc"><h3>対面・現場対応</h3><p>対面や現場を見ながらのご相談。その場で解決できる内容であればすぐに回答します。</p></div>
+        <div class="svc"><h3>会議・セミナー・勉強会</h3><p>社内の開発・プロジェクト会議への第三者視点の参加や、各種セミナー・勉強会に対応します。</p></div>
+      </div>
+      <div class="price-box">
+        <div class="p-left">
+          <h3>ご依頼のイメージ</h3>
+          <p>支援は1コマ2.5時間保証（実働・移動時間は別）。初回1時間はサービス説明と課題相談に充てます。支援後3ヶ月は電話・メールの相談が無料です。全国対応（訪問時は別途出張サービス費）。</p>
+        </div>
+        <div class="price-tag">33,000円<small>1コマ（税込・税抜30,000円）</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Profile</div>
+        <h2 class="sec-title">代表プロフィール</h2>
+      </div>
+      <div class="profile">
+        <div class="avatar">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="38" r="20" fill="#90ab86"/>
+            <path d="M15 92 C15 65 30 55 50 55 C70 55 85 65 85 92 Z" fill="#7f9a75"/>
+          </svg>
+        </div>
+        <div>
+          <h3>髙橋 憲久（たかはし のりひさ）</h3>
+          <div class="role">こうばサポ 代表 ／ フリーランスエンジニア</div>
+          <p>
+            滋賀県栗東市を拠点に、工場の電気保全・生産設備・省エネ・生産性向上・DXの技術アドバイザーとして活動。
+            30年以上にわたり一貫して「工場の現場」と向き合い、大手メーカーから中小工場まで多様な現場対応で培ってきた知見を活かし、
+            規模の大小を問わず工場経営者・現場技術者の良き相談相手となることを目指しています。
+          </p>
+          <p>
+            大手化学メーカー系エンジニアリング会社を経て、工場向け総合エンジニアリング会社に約30年在籍。
+            2026年4月より「こうばサポ」として活動開始。滋賀県産業支援プラザ登録専門家、経済産業省SII省エネルギー診断事業登録専門家。
+          </p>
+          <div class="qual">
+            <span>エネルギー管理士（電気）</span>
+            <span>1級電気工事施工管理技士</span>
+            <span>第三種電気主任技術者</span>
+            <span>機械保全技能士1級（電気系）</span>
+            <span>第一種電気工事士</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  <section id="posts">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-tag">Case</div>
+        <h2 class="sec-title">支援事例・発信</h2>
+        <p class="sec-sub">実際に取り組んだ内容は「こうばラボ」でも発信しています。</p>
+      </div>
+      <div class="posts">
+        <a class="post" href="https://koubasapo.com/dx-fa/525/" target="_blank" rel="noopener">
+          <div class="cat">工場DX</div>
+          <h4>コスパ重視のデマンド監視システム構築</h4>
+          <div class="arrow">記事を読む →</div>
+        </a>
+        <a class="post" href="https://koubasapo.com/blog/500/" target="_blank" rel="noopener">
+          <div class="cat">ブログ</div>
+          <h4>省エネ診断（学校法人）の取り組み</h4>
+          <div class="arrow">記事を読む →</div>
+        </a>
+        <a class="post" href="https://koubasapo.com/blog/454/" target="_blank" rel="noopener">
+          <div class="cat">ブログ</div>
+          <h4>高圧電源の計画支援</h4>
+          <div class="arrow">記事を読む →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <h2 class="sec-title">相談先がわからない、最適な構想か不安。<br>そんなときこそ、まずお気軽にご相談ください。</h2>
+      <p class="sec-sub">製品への誘導なし。支援回数・期間の縛りもありません。</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://koubasapo.com/contact/" target="_blank" rel="noopener">お問合せページへ</a>
+        <a class="btn btn-secondary" href="https://koubalabo.com/" target="_blank" rel="noopener">こうばラボ（ブログ）を見る</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo.png" alt="こうばサポ" style="height:26px;filter:invert(1) brightness(1.4);opacity:.85;">
+        <p style="margin-top:10px;color:#8fa384;">屋号：こうばサポ ／ 拠点：滋賀県栗東市<br>適格請求書発行事業者 登録済</p>
+      </div>
+      <div class="foot-links">
+        <a href="https://koubasapo.com/" target="_blank" rel="noopener">公式サイト</a>
+        <a href="https://koubasapo.com/service/" target="_blank" rel="noopener">サービス</a>
+        <a href="https://koubasapo.com/solutions/" target="_blank" rel="noopener">事例</a>
+        <a href="https://koubasapo.com/qa/" target="_blank" rel="noopener">Q&amp;A</a>
+        <a href="https://koubasapo.com/contact/" target="_blank" rel="noopener">お問合せ</a>
+        <a href="https://koubalabo.com/" target="_blank" rel="noopener">こうばラボ</a>
+      </div>
+    </div>
+    <div class="copyright">&copy; こうばサポ / このページは公式サイト（koubasapo.com）の紹介用ランディングページです。</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
